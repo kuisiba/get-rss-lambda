@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  get-rss-lambda
+
+  SAM Template for get-rss-lambda
+  
+Globals:
+  Function:
+    Timeout: 10
+
+Resources:
+  GetRssLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: get-rss-lambda/
+      Handler: app.lambdaHandler
+      Runtime: nodejs12.x
+      Policies:
+      - Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Action:
+          - 's3:PutObject'
+          Resource: "arn:aws:s3::*"
+      Events:
+        GetRssLambda:
+            Type: Schedule
+            Properties:
+                Schedule: cron(0 0/4 * * ? *)
+
+Outputs:
+  GetRssLambdaFunction:
+    Description: "Get Rss Lambda Function ARN"
+    Value: !GetAtt GetRssLambdaFunction.Arn
+  GetRssLambdaFunctionIamRole:
+    Description: "Implicit IAM Role created for Hello World function"
+    Value: !GetAtt GetRssLambdaFunctionRole.Arn
