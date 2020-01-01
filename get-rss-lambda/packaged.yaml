@@ -12,7 +12,7 @@ Resources:
   GetRssLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://get-rss-lambda-zip/4a3e3b8e16b96a4f30ed490cbfd3d98a
+      CodeUri: s3://get-rss-lambda-zip/77d02675cb6d496838a429d29b660055
       Handler: app.lambdaHandler
       Runtime: nodejs12.x
       Policies:
@@ -21,7 +21,7 @@ Resources:
         - Effect: Allow
           Action:
           - s3:PutObject
-          Resource: arn:aws:s3::*
+          Resource: arn:aws:s3:::*
       Events:
         GetRssLambda:
           Type: Schedule

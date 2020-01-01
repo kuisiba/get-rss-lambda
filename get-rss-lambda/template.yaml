@@ -22,7 +22,7 @@ Resources:
         - Effect: Allow
           Action:
           - 's3:PutObject'
-          Resource: "arn:aws:s3::*"
+          Resource: "arn:aws:s3:::*"
       Events:
         GetRssLambda:
             Type: Schedule
